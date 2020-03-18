@@ -221,6 +221,9 @@ lwIDAQAB
         self.set_var("use_ipv6", "auto") #force_ipv4/force_ipv6/auto
         self.set_var("ipv6_scan_ratio", 90) # 0 - 100
 
+        # Check local network
+        self.set_var("check_local_network_rules", "normal")  # normal, force_ok, force_fail
+
         self.load()
 
     def load(self):
@@ -244,7 +247,7 @@ lwIDAQAB
         self.br_endswith = tuple(self.BR_SITES_ENDSWITH)
 
         # there are only hundreds of GAE IPs, we don't need a large threads num
-        self.max_scan_ip_thread_num = min(self.max_scan_ip_thread_num, 30)
+        self.max_scan_ip_thread_num = min(self.max_scan_ip_thread_num, 200)
 
         if need_save:
             self.save()
